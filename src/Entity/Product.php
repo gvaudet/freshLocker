@@ -15,7 +15,7 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $libelle = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
@@ -24,24 +24,24 @@ class Product
     private ?string $photo = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
-    private ?string $prixUnitaire = null;
+    private ?string $unitPrice = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $facteurDeConversion = null;
+    private ?string $conversionFactor = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLibelle(): ?string
+    public function getName(): ?string
     {
-        return $this->libelle;
+        return $this->name;
     }
 
-    public function setLibelle(string $libelle): self
+    public function setName(string $name): self
     {
-        $this->libelle = $libelle;
+        $this->name = $name;
 
         return $this;
     }
@@ -70,26 +70,26 @@ class Product
         return $this;
     }
 
-    public function getPrixUnitaire(): ?string
+    public function getUnitPrice(): ?string
     {
-        return $this->prixUnitaire;
+        return $this->unitPrice;
     }
 
-    public function setPrixUnitaire(string $prixUnitaire): self
+    public function setUnitPrice(string $unitPrice): self
     {
-        $this->prixUnitaire = $prixUnitaire;
+        $this->unitPrice = $unitPrice;
 
         return $this;
     }
 
-    public function getFacteurDeConversion(): ?string
+    public function getConversionFactor(): ?string
     {
-        return $this->facteurDeConversion;
+        return $this->conversionFactor;
     }
 
-    public function setFacteurDeConversion(string $facteurDeConversion): self
+    public function setConversionFactor(string $conversionFactor): self
     {
-        $this->facteurDeConversion = $facteurDeConversion;
+        $this->conversionFactor = $conversionFactor;
 
         return $this;
     }
