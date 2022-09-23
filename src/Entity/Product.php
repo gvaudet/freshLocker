@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,22 @@ class Product
 
     #[ORM\Column(length: 50)]
     private ?string $conversionFactor = null;
+
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'products')]
+    private Collection $category;
+
+    #[ORM\ManyToMany(targetEntity: Stock::class, inversedBy: 'products')]
+    private Collection $stock;
+
+    #[ORM\ManyToMany(targetEntity: Conditioning::class, inversedBy: 'products')]
+    private Collection $conditioning;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+        $this->stock = new ArrayCollection();
+        $this->conditioning = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +108,78 @@ class Product
     public function setConversionFactor(string $conversionFactor): self
     {
         $this->conversionFactor = $conversionFactor;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stock>
+     */
+    public function getStock(): Collection
+    {
+        return $this->stock;
+    }
+
+    public function addStock(Stock $stock): self
+    {
+        if (!$this->stock->contains($stock)) {
+            $this->stock->add($stock);
+        }
+
+        return $this;
+    }
+
+    public function removeStock(Stock $stock): self
+    {
+        $this->stock->removeElement($stock);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Conditioning>
+     */
+    public function getConditioning(): Collection
+    {
+        return $this->conditioning;
+    }
+
+    public function addConditioning(Conditioning $conditioning): self
+    {
+        if (!$this->conditioning->contains($conditioning)) {
+            $this->conditioning->add($conditioning);
+        }
+
+        return $this;
+    }
+
+    public function removeConditioning(Conditioning $conditioning): self
+    {
+        $this->conditioning->removeElement($conditioning);
 
         return $this;
     }
