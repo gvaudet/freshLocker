@@ -36,7 +36,7 @@ class RegisterType extends AbstractType
                     'placeholder' => 'loremipsum@dolor.com',
                     ],
                 ])
-            ->add('password', PasswordType::class, [
+            ->add('plainPassword', PasswordType::class, [
                 'label' => 'Mot de passe*',
                 'help' => 'Le mot de passe doit contenir au moins 8 caractères',
                 'attr' => [
