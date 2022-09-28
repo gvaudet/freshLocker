@@ -73,7 +73,7 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::subMenu('Users', 'fas fa-user')->setSubItems([
-            MenuItem::linkToCrud('Ajouter un client', 'fas fa-plus',User::class)->setAction(Crud::PAGE_EDIT),
+            MenuItem::linkToCrud('Ajouter un client', 'fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir les clients', 'fas fa-eye',User::class)
         ]);
 
