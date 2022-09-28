@@ -1,3 +1,25 @@
 <header>
-    header
+    Header
+    <nav>
+        <ul>
+            <li>
+            <a href="{{ path('main_index') }}">Accueil</a>
+            </li>
+            {% if app.user %} {# Si connecté #}
+            <li>
+                {{ app.user.firstname }}
+            </li>
+            <li>
+                <a href="{{ path('user_logout') }}">Déconnexion</a>
+            </li>
+            {% else %} {# Sinon #}
+            <li>
+                <a href="{{ path('user_register') }}">Inscription</a>
+            </li>
+            <li>
+                <a href="{{ path('user_login') }}">Connexion</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
 </header>
