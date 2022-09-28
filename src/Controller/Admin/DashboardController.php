@@ -78,7 +78,7 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::subMenu('FreshLocker', 'fas fa-table-cells')->setSubItems([
-            MenuItem::linkToCrud('Ajouter un FeshLocker', 'fas fa-plus',User::class)->setAction(Crud::PAGE_EDIT),
+            MenuItem::linkToCrud('Ajouter un FeshLocker', 'fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir les FreshLocker', 'fas fa-eye',User::class)
         ]);
         
