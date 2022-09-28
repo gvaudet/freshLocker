@@ -43,6 +43,7 @@ class UserController extends AbstractController
     #[Route('/login', name: 'user_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        // Pour accéder à l'utilisateur connecté :
         if ($this->getUser()) {
             return $this->redirectToRoute('main_index');
         }
