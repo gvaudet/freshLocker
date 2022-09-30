@@ -14,14 +14,15 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
+#[Route('/admin')]
+
 class DashboardController extends AbstractDashboardController
 {
-    public function __construct(
-        private AdminUrlGenerator $adminUrlGenerator
-    ){
+    public function __construct(private AdminUrlGenerator $adminUrlGenerator)
+    {
     }
 
-    #[Route('/admin', name: 'admin')]
+    #[Route('', name: 'admin')]
     public function index(): Response
     {
         $url = $this->adminUrlGenerator

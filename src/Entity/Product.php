@@ -40,11 +40,15 @@ class Product
     #[ORM\ManyToMany(targetEntity: Conditioning::class, inversedBy: 'products')]
     private Collection $conditioning;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Producer::class)]
+    private Collection $producers;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
         $this->stock = new ArrayCollection();
         $this->conditioning = new ArrayCollection();
+        $this->producers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,6 +184,36 @@ class Product
     public function removeConditioning(Conditioning $conditioning): self
     {
         $this->conditioning->removeElement($conditioning);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Producer>
+     */
+    public function getProducers(): Collection
+    {
+        return $this->producers;
+    }
+
+    public function addProducer(Producer $producer): self
+    {
+        if (!$this->producers->contains($producer)) {
+            $this->producers->add($producer);
+            $producer->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProducer(Producer $producer): self
+    {
+        if ($this->producers->removeElement($producer)) {
+            // set the owning side to null (unless already changed)
+            if ($producer->getProduct() === $this) {
+                $producer->setProduct(null);
+            }
+        }
 
         return $this;
     }
