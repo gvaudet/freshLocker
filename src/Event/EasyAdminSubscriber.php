@@ -23,7 +23,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $hashed = $this->hasher->hashPassword($user, $user->getPlainPassword());
         $user->setPassword($hashed);
     }
-
+    // Ajout de fonction pour la modification 
     public static function getSubscribedEvents()
     {
         return [
