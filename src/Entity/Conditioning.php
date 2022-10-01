@@ -15,11 +15,14 @@ class Conditioning
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $name = null;
-
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'conditioning')]
     private Collection $products;
+
+    #[ORM\Column(length: 50)]
+    private ?string $label = null;
+
+    #[ORM\Column]
+    private ?float $conversionFactor = null;
 
     public function __construct()
     {
@@ -29,18 +32,6 @@ class Conditioning
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -66,6 +57,30 @@ class Conditioning
         if ($this->products->removeElement($product)) {
             $product->removeConditioning($this);
         }
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getConversionFactor(): ?float
+    {
+        return $this->conversionFactor;
+    }
+
+    public function setConversionFactor(float $conversionFactor): self
+    {
+        $this->conversionFactor = $conversionFactor;
 
         return $this;
     }
