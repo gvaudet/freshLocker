@@ -40,6 +40,11 @@ class Producer
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return $this->getLabel();
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
