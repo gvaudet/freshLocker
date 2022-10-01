@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Nos produits - {{parent()}} {% endblock %}
+
+{% block body %}
+
+    <h1>Nos produits</h1>
+
+    {% for product in products %}
+        <div>  
+            <p>Producteur : {{ product.producers.get(0) }}</p>
+            <p>Nom : {{ product.label }}</p>
+            
+            {% for productConditioning in product.conditioning %}
+
+                <p>Conditionnement : {{ productConditioning.label }}</p>
+                <p>{{ product.unitPrice / productConditioning.conversionFactor }} / kg</p>
+            {% endfor %}
+
+            <p>Prix unitaire : {{ product.unitPrice }} €</p>
+            -----------
+        </div>
+    {% endfor %}
+
+{% endblock %}

@@ -29,9 +29,38 @@ class Conditioning
         $this->products = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->getLabel();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getConversionFactor(): ?float
+    {
+        return $this->conversionFactor;
+    }
+
+    public function setConversionFactor(float $conversionFactor): self
+    {
+        $this->conversionFactor = $conversionFactor;
+
+        return $this;
     }
 
     /**
@@ -57,30 +86,6 @@ class Conditioning
         if ($this->products->removeElement($product)) {
             $product->removeConditioning($this);
         }
-
-        return $this;
-    }
-
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): self
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-    public function getConversionFactor(): ?float
-    {
-        return $this->conversionFactor;
-    }
-
-    public function setConversionFactor(float $conversionFactor): self
-    {
-        $this->conversionFactor = $conversionFactor;
 
         return $this;
     }

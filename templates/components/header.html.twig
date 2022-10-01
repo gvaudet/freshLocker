@@ -3,7 +3,10 @@
     <nav>
         <ul>
             <li>
-            <a href="{{ path('main_index') }}">Accueil</a>
+                <a href="{{ path('main_index') }}">Accueil</a>
+            </li>
+            <li>
+                <a href="{{ path('product_list') }}">Nos produits</a>
             </li>
             {% if app.user %} {# Si connecté #}
             <li>
