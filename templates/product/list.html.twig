@@ -2,12 +2,18 @@
 
 {% block title %} Nos produits - {{parent()}} {% endblock %}
 
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/product.css')}}">        
+    {% endblock %}
+
+
 {% block body %}
 
     <h1>Nos produits</h1>
-
+{# 
     {% for product in products %}
         <div>  
+            <img src="{{ asset('images/fruits/' ~ product.photo)}}" alt="">
             <p>Producteur : {{ product.producers.get(0) }}</p>
             <p>Nom : {{ product.label }}</p>
             
@@ -19,7 +25,34 @@
 
             <p>Prix unitaire : {{ product.unitPrice }} €</p>
             -----------
-        </div>
+            <a href="{{ path('cart_add', {'id' : product.id})}}" id="add">Ajouter</a>
+        </div> #}
+<div class="container">
+
+    {% for product in products %}
+        <div class="our-products-category">
+
+                    <div class="card-product">
+                        <div class="card-product-img">
+                            <img src="{{ asset('images/fruits/' ~ product.photo)}}" alt="Photo du produit {{ product.label }}">
+                        </div>
+                        <div class="card-product-body">
+                            <h4 class="product-name">{{ product.label }}</h4>
+                            <p><span class="card-product-producer">{{ product.producers.get(0) }}</span></p>
+                        {% for productConditioning in product.conditioning %}
+
+                        <p>{{ productConditioning.label }}</p>
+                        <p>{{ product.unitPrice / productConditioning.conversionFactor }} / kg</p>
+                        {% endfor %}
+                        </div>
+                        <div class="card-product-cart">
+                            <p>{{ product.unitPrice }}  €</p>
+                            <a href="{{ path('cart_add', {'id' : product.id})}}"><i class="fa-solid fa-basket-shopping pointer"></i></a>
+                        </div>
+                    </div>
+
+                </div>
     {% endfor %}
+</div>    
 
 {% endblock %}

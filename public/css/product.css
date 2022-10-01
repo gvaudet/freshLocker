@@ -1,0 +1,19 @@
+:root {
+    --black: #1A1A1A;
+    --grey: #8C8C8C;
+    --white: #FFFFFF;
+    --main-green: #156350;
+    --secondary-green: #93C781;
+    --mint-blue: #B8E0D6;
+    --main-orange: #F3A208;
+    --secondary-orange: #FFDB96;
+}
+
+.container {
+    max-width: 1400px;
+    padding: 0 24px;
+    margin: 0 auto;
+    
+    display: flex;
+    flex-wrap: wrap;
+}
