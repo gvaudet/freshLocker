@@ -6,7 +6,6 @@ use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -58,7 +57,7 @@ class CartController extends AbstractController
         }
 
         $session->set('cart', $cart);
-
+        // ASK TO ROBINOU
         return $this->redirectToRoute('cart_index');
     }
 
@@ -66,11 +65,34 @@ class CartController extends AbstractController
     public function remove($id, SessionInterface $session){
         $cart = $session->get('cart', []);
 
+        if($cart[$id]>1){
+            $cart[$id]--;
+        }else{
+            unset($cart[$id]);
+        }
+
+        $session->set('cart', $cart);
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+    #[Route('/removeItem/{id}', name: 'removeItem')]
+    public function removeItem($id, SessionInterface $session){
+        $cart = $session->get('cart', []);
+
         if(!empty($cart[$id])){
             unset($cart[$id]);
         }
 
         $session->set('cart', $cart);
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+    #[Route('/removeAll', name: 'removeAll')]
+    public function removeAll(SessionInterface $session){
+
+        $session->remove('cart');
 
         return $this->redirectToRoute('cart_index');
     }
