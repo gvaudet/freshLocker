@@ -33,9 +33,10 @@
     {% for product in products %}
         <div class="our-products-category">
 
+                <a href="{{ path('product_single', {id: product.id, label:product.label}) }}">
                     <div class="card-product">
                         <div class="card-product-img">
-                            {# <img src="{{ asset('images/fruits/' ~ product.photo)}}" alt="Photo du produit {{ product.label }}"> #}
+                            <img src="{{ asset('images/fruits/' ~ product.photo) | imagine_filter('my_thumb') }}" alt="Photo du produit {{ product.label }}">
                         </div>
                         <div class="card-product-body">
                             <h4 class="product-name">{{ product.label }}</h4>
@@ -56,6 +57,7 @@
 
                         </div>
                     </div>
+                </a>
 
                 </div>
     {% endfor %}
