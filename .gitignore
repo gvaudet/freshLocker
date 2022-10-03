@@ -22,3 +22,10 @@
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+
+###> Spéc Mac ###
+.DS_Store
+/public/.DS_Store
+/public/images/.DS_Store
+/public/images/fruits/.DS_Store
+/public/images/legumes/.DS_Store
