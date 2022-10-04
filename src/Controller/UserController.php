@@ -32,7 +32,7 @@ class UserController extends AbstractController
 
             // Message flash et redirection
             $this->addFlash('success', 'Compte utilisateur créé !'); // Boucle à faire dans le twig pour affichage
-            return $this->redirectToRoute('main_index');
+            return $this->redirectToRoute('user_login');
         }
 
         return $this->render('user/register.html.twig', [
