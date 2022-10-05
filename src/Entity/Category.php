@@ -17,6 +17,9 @@ class Category
 
     #[ORM\Column(length: 50)]
     private ?string $name = null;
+    
+    #[ORM\Column(length: 50)]
+    private ?string $alias = null;
 
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'category')]
     private Collection $products;
@@ -66,6 +69,26 @@ class Category
         if ($this->products->removeElement($product)) {
             $product->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of alias
+     */ 
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * Set the value of alias
+     *
+     * @return  self
+     */ 
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
 
         return $this;
     }
