@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Nos produits - {{parent()}} {% endblock %}
+{% block title %} Produit {{ product.label }} - {{parent()}} {% endblock %}
 
     {% block stylesheets %}
     <link rel="stylesheet" href="{{asset('css/product.css')}}">        
