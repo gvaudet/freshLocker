@@ -2,15 +2,17 @@
 
 {% block title %} Produit {{ product.label }} - {{parent()}} {% endblock %}
 
-    {% block stylesheets %}
+{% block stylesheets %}
     <link rel="stylesheet" href="{{asset('css/product.css')}}">        
-    {% endblock %}
+{% endblock %}
 
 
 {% block body %}
 
     <h1>{{ product.label }}</h1>
-    <img style="height:600px;" src="{{ asset('images/fruits/' ~ product.photo) }}" alt="Photo du produit {{ product.label }}">
 
+    {% for productCategory in product.category %}
+        <img src="{{ asset('images/' ~ productCategory.alias ~ '/full/' ~ product.photo) }}" alt="Photo du produit {{ product.label }}">
+    {% endfor %}
 
 {% endblock %}

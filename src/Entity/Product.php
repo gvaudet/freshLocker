@@ -31,6 +31,9 @@ class Product
     #[ORM\Column(length: 50)]
     private ?string $label = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $alias = null;
+
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $unitPrice = null;
 
@@ -199,6 +202,26 @@ class Product
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of alias
+     */ 
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * Set the value of alias
+     *
+     * @return  self
+     */ 
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
 
         return $this;
     }
