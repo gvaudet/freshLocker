@@ -13,9 +13,17 @@ class OrderController extends AbstractController
     #[Route('', name: 'index')]
     public function index(): Response
     {
+        if (!$this->getUser()->getAddress()->getValues())
+        {
+            return $this->redirectToRoute('address_add');
+        }
+
         $form = $this->createForm(OrderType::class, null, [
-            'user' =>$this->getUser(),
+            'user' => $this->getUser(),
         ]);
-        return $this->render('order/index.html.twig');
+
+        return $this->render('order/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

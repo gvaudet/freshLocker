@@ -42,6 +42,10 @@ class Address
         $this->freshLockers = new ArrayCollection();
     }
 
+    // public function getFullAddress(){
+    //     return $this->streetName.' '.$this->postCode.' '.$this->city;
+    // }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -163,4 +167,10 @@ class Address
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getNumber().'[br]'. $this->getStreetName().'[br]'. $this->getPostCode().'[br]'. $this->getCity();
+    }
+
 }

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/address', name: 'address_')]
 #[IsGranted('IS_AUTHENTICATED_FULLY')] // Utilisateur connecté
@@ -26,7 +27,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/add', name: 'add', methods: ['GET', 'POST'])] // Créer une adresse
-    public function add(Request $request, AddressRepository $addressRepository): Response
+    public function add(Request $request, AddressRepository $addressRepository, SessionInterface $session): Response
     {
         $address = new Address();
         $address->addUser($this->getUser());
@@ -38,8 +39,13 @@ class AddressController extends AbstractController
             // Sauvegarde des données dans la BDD
             $addressRepository->add($address, true);
 
-            // Redirection affichage des adresses
-            return $this->redirectToRoute('address_list', [], Response::HTTP_SEE_OTHER);
+            // Redirection vers le panier si il y a des artciles 
+            if($session->get('cart')){
+                return $this->redirectToRoute('cart_index');
+            }else{
+                // Redirection affichage des adresses
+                return $this->redirectToRoute('address_list', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('address/add.html.twig', [

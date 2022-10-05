@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OrderType extends AbstractType
@@ -12,16 +14,17 @@ class OrderType extends AbstractType
     {
         $user = $options['user']; 
 
-        // $builder
-    //         ->add('adresses', EntityType::class, [
-    //             'label' => 'Chosisissez votre adresses de livraison', 
-    //             'required' => true,
-    //             'class' => Address::class, 
-    //             'choices' => $user->getAddresses(),
-    //             'multiple' => false, 
-    //             'expanded' => true
-    //         ])
-    //     ;
+        $builder
+            ->add('adresses', EntityType::class, [
+                'label' => 'Chosisissez votre adresses de livraison', 
+                'required' => true,
+                'class' => Address::class, 
+                'choices' => $user->getAddress(),
+                // 'choice_label' => 'fullAddress',
+                'multiple' => false, 
+                'expanded' => true
+            ])
+        ;
      }
 
     public function configureOptions(OptionsResolver $resolver): void

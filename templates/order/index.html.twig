@@ -8,6 +8,14 @@
 <div class="row">
     <div class="col-md-6">
         <p>Choisir mon FreshLocker</p>
+        <p>Choisir mon Adresse</p>
+        {% set formHtml %}
+
+            {{ form(form) }}
+
+        {% endset %}
+
+        {{ formHtml|replace({'[br]' : '<br/>'})|raw }}
     </div>
     <div class="col-md-6">
         <p>Récap de ma commande</p>
