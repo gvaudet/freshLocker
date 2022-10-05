@@ -46,6 +46,7 @@ class OrderController extends AbstractController
             'user' => $this->getUser(),
         ]);
 
+        // "Écoute" de la requete
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
