@@ -7,8 +7,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <p>Choisir mon FreshLocker</p>
-        <p>Choisir mon Adresse</p>
+
         {% set formHtml %}
 
             {{ form(form) }}
@@ -19,6 +18,36 @@
     </div>
     <div class="col-md-6">
         <p>Récap de ma commande</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Price</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td>{{ item.product.label}}</td>
+                    <td>{{ item.product.unitPrice}}</td>
+                    <td>
+                        <p>{{ item.quantity}}</p>
+                    <td> {{ item.product.unitPrice * item.quantity}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total :</td>
+                <td>{{ total }}</td>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
         <p>Bouton pour payer </p>
     </div>
 </div>
