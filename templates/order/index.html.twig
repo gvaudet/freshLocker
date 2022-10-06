@@ -10,7 +10,10 @@
 
         {% set formHtml %}
 
-            {{ form(form) }}
+            {{ form_start(form, {action:path('order_recap')}) }}
+                {{ form_label(form.adresse, 'Choisissez votre adresse de facturation') }}
+                <a href="{{ path('address_add') }}" class="btn btn-success">Ajouter une adresse</a>
+            {{ form_end(form) }}
 
         {% endset %}
 
@@ -48,7 +51,6 @@
             </tr>
         </tfoot>
     </table>
-        <p>Bouton pour payer </p>
     </div>
 </div>
 {% endblock %}

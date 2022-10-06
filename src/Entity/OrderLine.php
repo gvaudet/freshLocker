@@ -25,6 +25,12 @@ class OrderLine
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $unitPrice = null;
 
+    #[ORM\Column]
+    private ?float $total = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $productLabel = null;
+
     public function getProduct(): ?Product
     {
         return $this->product;
@@ -69,6 +75,30 @@ class OrderLine
     public function setUnitPrice(string $unitPrice): self
     {
         $this->unitPrice = $unitPrice;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(float $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function getProductLabel(): ?string
+    {
+        return $this->productLabel;
+    }
+
+    public function setProductLabel(string $productLabel): self
+    {
+        $this->productLabel = $productLabel;
 
         return $this;
     }

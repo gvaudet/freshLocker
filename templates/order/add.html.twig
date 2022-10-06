@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - FreshLocker{% endblock %}
+
+{% block body %}
+<h2>Mon récapitulatif</h2>
+<p>Vérifiez vos informations avant de passer votre commande.</p>
+<div class="row">
+    <div class="col-md-6">
+    <p>Mon adresse de facturation </p>
+    {{ billingAddress}}
+    <p>Mon freshLocker </p>
+    <p> {{ freshLocker.name}}</p>
+    <p> {{ freshLocker.address.number}}</p>
+    <p> {{ freshLocker.address.streetName}}</p>
+    <p> {{ freshLocker.address.city}}</p>
+    <p> {{ freshLocker.address.postCode}}</p>
+    </div>
+    <div class="col-md-6">
+        <p>Ma commande</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Price</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td>{{ item.product.label}}</td>
+                    <td>{{ item.product.unitPrice}}€</td>
+                    <td>
+                        <p>{{ item.quantity}}</p>
+                    <td> {{ item.product.unitPrice * item.quantity}}€</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Sous - Total : {{ total }}€</td>
+                <td>frais de livraison : {{ deliveryPrice }}€</td>
+                <td> total : {{ total + deliveryPrice}}€</td>
+            </tr>
+        </tfoot>
+    </table>
+        <a href="#" class="btn btn-success">Payer {{ total + deliveryPrice}}€</a>
+    </div>
+</div>
+{% endblock %}
