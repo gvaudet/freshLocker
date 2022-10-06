@@ -6,6 +6,7 @@ use App\Repository\AddressRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 class Address
@@ -15,20 +16,58 @@ class Address
     #[ORM\Column]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 10, nullable: true)]
+    #[Assert\Length(
+        max: 10,
+        maxMessage: "Le numéro ne peut contenir plus de {{ limit }} caractères",
+    )]
     private ?string $number = null;
 
+
     #[ORM\Column(length: 120)]
+    #[Assert\NotBlank(
+        message: "Veuillez saisir un nom de rue",
+    )]
+    #[Assert\Length(
+        max: 120,
+        maxMessage: "Le nom de la rue doit contenir au maximum {{ limit }} caractères",
+    )]
     private ?string $streetName = null;
 
+
     #[ORM\Column(length: 5)]
+    #[Assert\NotBlank(
+        message: "Veuillez saisir un code postal",
+    )]
+    #[Assert\Length(
+        max: 5,
+        maxMessage: "Le code postal doit contenir au maximum {{ limit }} caractères",
+    )]
     private ?string $postCode = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $city = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(
+        message: "Veuillez saisir une ville",
+    )]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: "La ville doit contenir au maximum {{ limit }} caractères",
+    )]
+    private ?string $city = null;
+
+
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(
+        message: "Veuillez saisir un pays",
+    )]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: "Le pays doit contenir au maximum {{ limit }} caractères",
+    )]
     private ?string $country = null;
+
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'address')]
     private Collection $users;
@@ -36,20 +75,19 @@ class Address
     #[ORM\OneToMany(mappedBy: 'address', targetEntity: FreshLocker::class)]
     private Collection $freshLockers;
 
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->freshLockers = new ArrayCollection();
     }
 
-    // public function getFullAddress(){
-    //     return $this->streetName.' '.$this->postCode.' '.$this->city;
-    // }
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
 
     public function getNumber(): ?string
     {
@@ -63,6 +101,7 @@ class Address
         return $this;
     }
 
+
     public function getStreetName(): ?string
     {
         return $this->streetName;
@@ -74,6 +113,7 @@ class Address
 
         return $this;
     }
+
 
     public function getPostCode(): ?string
     {
@@ -87,6 +127,7 @@ class Address
         return $this;
     }
 
+
     public function getCity(): ?string
     {
         return $this->city;
@@ -99,6 +140,7 @@ class Address
         return $this;
     }
 
+
     public function getCountry(): ?string
     {
         return $this->country;
@@ -110,6 +152,7 @@ class Address
 
         return $this;
     }
+
 
     /**
      * @return Collection<int, User>
@@ -137,6 +180,7 @@ class Address
 
         return $this;
     }
+
 
     /**
      * @return Collection<int, FreshLocker>
@@ -167,6 +211,11 @@ class Address
 
         return $this;
     }
+
+
+    // public function getFullAddress(){
+    //     return $this->streetName.' '.$this->postCode.' '.$this->city;
+    // }
 
     public function __toString()
     {
