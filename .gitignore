@@ -24,6 +24,7 @@
 
 ###> Spéc Mac ###
 .DS_Store
+/src/.DS_Store 
 /public/.DS_Store
 /public/images/.DS_Store
 /public/images/fruits/.DS_Store
