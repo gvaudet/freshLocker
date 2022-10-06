@@ -23,7 +23,7 @@
 ###< liip/imagine-bundle ###
 
 ###> Spéc Mac ###
-.DS_Store
+/.DS_Store
 /src/.DS_Store 
 /public/.DS_Store
 /public/images/.DS_Store
