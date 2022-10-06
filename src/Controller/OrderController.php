@@ -57,7 +57,7 @@ class OrderController extends AbstractController
         ]);
     }
 
-    #[Route('/recapitulatif', name: 'recap', methods: ['POST'])]
+    #[Route('/recapitulatif', name: 'recap', methods: ['GET', 'POST'])]
     public function add(SessionInterface $session, ProductRepository $productRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
 
