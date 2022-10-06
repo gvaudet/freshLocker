@@ -37,10 +37,10 @@ class ProductCrudController extends AbstractCrudController
             AssociationField::new('category'),
             AssociationField::new('conditioning'),
             TextareaField:: new('description', 'Description :'),
+            // Attention réfléchir à l'enregistrement de l'image en BDD 
             TextField::new('photo', 'chemin de l\'image du produit:'),
             MoneyField::new('unitPrice', 'Prix unitaire')->setCurrency('EUR'), 
-            // Alias => Slug
-
+            // Pour la saisonalité voir pour une sorte de isEanable selon la saison? 
         ];
     }
 }

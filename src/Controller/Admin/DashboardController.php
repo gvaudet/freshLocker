@@ -2,12 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Address;
-use App\Entity\Category;
-use App\Entity\Conditioning;
-use App\Entity\FreshLocker;
-use App\Entity\Product;
 use App\Entity\User;
+use App\Entity\Order;
+use App\Entity\Address;
+use App\Entity\Product;
+use App\Entity\Category;
+use App\Entity\FreshLocker;
+use App\Entity\Conditioning;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -88,6 +89,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('FreshLocker', 'fas fa-table-cells')->setSubItems([
             MenuItem::linkToCrud('Ajouter un FeshLocker', 'fas fa-plus',FreshLocker::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir les FreshLocker', 'fas fa-eye',FreshLocker::class)
+        ]);
+
+        yield MenuItem::subMenu('Commandes', 'fas fa-table-cells')->setSubItems([
+            MenuItem::linkToCrud('Voir les Commandes', 'fas fa-eye',Order::class)->setAction(Crud::PAGE_INDEX),
         ]);
         
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);

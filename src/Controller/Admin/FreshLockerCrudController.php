@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Address;
 use App\Entity\FreshLocker;
+use App\Form\AddressType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -26,7 +28,7 @@ class FreshLockerCrudController extends AbstractCrudController
         return [
             TextField::new('name', 'nom du freshLocker'),
             TextField::new('serialNumber', 'Numéro de série'),
-            CollectionField::new('adresse')
+            CollectionField::new('address')->setEntryType(AddressType::class),
         ];
     }
 }
