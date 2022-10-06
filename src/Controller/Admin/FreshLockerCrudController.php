@@ -4,7 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\FreshLocker;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 
 class FreshLockerCrudController extends AbstractCrudController
 {
@@ -19,14 +21,12 @@ class FreshLockerCrudController extends AbstractCrudController
         ->setEntityLabelInPlural('FreshLocker');
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('name', 'nom du freshLocker'),
+            TextField::new('serialNumber', 'Numéro de série'),
+            CollectionField::new('adresse')
         ];
     }
-    */
 }

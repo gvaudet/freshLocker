@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Address;
 use App\Entity\Category;
 use App\Entity\Conditioning;
+use App\Entity\FreshLocker;
 use App\Entity\Product;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,14 +75,19 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir les conditionnement', 'fas fa-eye',Conditioning::class)
         ]);
 
-        yield MenuItem::subMenu('Users', 'fas fa-user')->setSubItems([
-            MenuItem::linkToCrud('Ajouter un client', 'fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir les clients', 'fas fa-eye',User::class)
+        yield MenuItem::subMenu('Personnes', 'fas fa-user')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une personne', 'fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les personnes', 'fas fa-eye',User::class)
+        ]);
+
+        yield MenuItem::subMenu('Adresses', 'fas fa-home')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une adresse', 'fas fa-plus',Address::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les adresses', 'fas fa-eye',Address::class)
         ]);
 
         yield MenuItem::subMenu('FreshLocker', 'fas fa-table-cells')->setSubItems([
-            MenuItem::linkToCrud('Ajouter un FeshLocker', 'fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir les FreshLocker', 'fas fa-eye',User::class)
+            MenuItem::linkToCrud('Ajouter un FeshLocker', 'fas fa-plus',FreshLocker::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les FreshLocker', 'fas fa-eye',FreshLocker::class)
         ]);
         
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
