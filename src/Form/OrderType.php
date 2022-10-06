@@ -27,11 +27,11 @@ class OrderType extends AbstractType
                 // 'choice_label' => 'fullAddress',
                 'multiple' => false, 
                 'expanded' => true,
-                'constraints' => array(
-                    new NotBlank([
-                        'message' => 'Veuillez choisir une adresse de facturation'
-                    ])
-               )
+            //     'constraints' => array(
+            //         new NotBlank([
+            //             'message' => 'Veuillez choisir une adresse de facturation'
+            //         ])
+            //    )
             ])
 
             ->add('freshLocker', EntityType::class, [
@@ -40,11 +40,11 @@ class OrderType extends AbstractType
                 'class' => FreshLocker::class, 
                 'multiple' => false, 
                 'expanded' => true,
-                'constraints' => array(
-                    new NotBlank([
-                        'message' => 'Veuillez choisir un FreshLocker'
-                    ])
-               )
+            //     'constraints' => array(
+            //         new NotBlank([
+            //             'message' => 'Veuillez choisir un FreshLocker'
+            //         ])
+            //    )
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider ma commande', 
@@ -60,9 +60,9 @@ class OrderType extends AbstractType
         $resolver->setDefaults([
             'user' => array(),
             // Enlever la vérification navigateur pour la partie développement :
-            'attr' => [
-               'novalidate' => 'novalidate' 
-            ]            
+            // 'attr' => [
+            //    'novalidate' => 'novalidate' 
+            // ]            
         ]);
     }
 }

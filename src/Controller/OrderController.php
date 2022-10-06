@@ -57,7 +57,7 @@ class OrderController extends AbstractController
         ]);
     }
 
-    #[Route('/recapitulatif', name: 'recap', methods: ['GET', 'POST'])]
+    #[Route('/recapitulatif', name: 'recap', methods: ['POST'])]
     public function add(SessionInterface $session, ProductRepository $productRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
 
@@ -89,6 +89,7 @@ class OrderController extends AbstractController
         $form->handleRequest($request);
         // Déclaration des frais de livraison
         $deliveryPrice = 1.99; 
+
         if ($form->isSubmitted() && $form->isValid()){
             // Déclaration des variables 
             $date = new \DateTime();
@@ -119,17 +120,17 @@ class OrderController extends AbstractController
                 $orderLine->setTotal($product['product']->getUnitPrice() * $product['quantity']);
                 $entityManager->persist($orderLine); 
             }
-            // $entityManager->flush();
+            $entityManager->flush();
 
             // Par "sécurité" si la personne entre l'url mais n'a pas indiqué adresse et freshlocker ne pourra pas afficher cette page 
-            return $this->render('order/add.html.twig', [
-                'cart' => $cartWithDataProduct,
-                'total' => $total,
-                'deliveryPrice' => $deliveryPrice,
-                'billingAddress' => $address_content, 
-                'freshLocker' => $freshLocker,
-            ]);
+
         }
-        return $this->redirectToRoute('cart_index');
+        return $this->render('order/add.html.twig', [
+            'cart' => $cartWithDataProduct,
+            'total' => $total,
+            'deliveryPrice' => $deliveryPrice,
+            'billingAddress' => $address_content, 
+            'freshLocker' => $freshLocker,
+        ]);    
     }
 }
