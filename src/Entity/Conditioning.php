@@ -15,15 +15,23 @@ class Conditioning
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $name = null;
-
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'conditioning')]
     private Collection $products;
+
+    #[ORM\Column(length: 50)]
+    private ?string $label = null;
+
+    #[ORM\Column]
+    private ?float $conversionFactor = null;
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->getLabel();
     }
 
     public function getId(): ?int
@@ -31,14 +39,26 @@ class Conditioning
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getLabel(): ?string
     {
-        return $this->name;
+        return $this->label;
     }
 
-    public function setName(string $name): self
+    public function setLabel(string $label): self
     {
-        $this->name = $name;
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getConversionFactor(): ?float
+    {
+        return $this->conversionFactor;
+    }
+
+    public function setConversionFactor(float $conversionFactor): self
+    {
+        $this->conversionFactor = $conversionFactor;
 
         return $this;
     }

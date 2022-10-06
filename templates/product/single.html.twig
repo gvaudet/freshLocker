@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Produit {{ product.label }} - {{parent()}} {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/product.css')}}">        
+{% endblock %}
+
+
+{% block body %}
+
+    <h1>{{ product.label }}</h1>
+
+    {% for productCategory in product.category %}
+        <img src="{{ asset('images/' ~ productCategory.alias ~ '/full/' ~ product.photo) }}" alt="Photo du produit {{ product.label }}">
+    {% endfor %}
+
+{% endblock %}

@@ -12,9 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+#[Route('', name: 'user_')]
 class UserController extends AbstractController
 {
-    #[Route('/register', name: 'user_register')]
+    #[Route('/register', name: 'register')]
     public function signin(Request $request, UserPasswordHasherInterface $hasher, UserRepository $userRepository): Response
     {
         $user = new User();
@@ -31,7 +32,7 @@ class UserController extends AbstractController
 
             // Message flash et redirection
             $this->addFlash('success', 'Compte utilisateur créé !'); // Boucle à faire dans le twig pour affichage
-            return $this->redirectToRoute('main_index');
+            return $this->redirectToRoute('user_login');
         }
 
         return $this->render('user/register.html.twig', [
@@ -40,7 +41,7 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/login', name: 'user_login')]
+    #[Route('/login', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // Pour accéder à l'utilisateur connecté :
@@ -60,7 +61,7 @@ class UserController extends AbstractController
     }
 
 
-    #[Route(path: '/logout', name: 'user_logout')]
+    #[Route(path: '/logout', name: 'logout')]
     public function logout(): void
     {
         // This method can be blank - it will be intercepted by the logout key on your firewall

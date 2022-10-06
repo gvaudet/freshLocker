@@ -31,6 +31,15 @@ class Order
     #[ORM\OneToMany(mappedBy: 'orderId', targetEntity: OrderLine::class)]
     private Collection $orderLines;
 
+    #[ORM\Column]
+    private ?bool $isPaid = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $billingAddress = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $freshLocker = null;
+
     public function __construct()
     {
         $this->orderLines = new ArrayCollection();
@@ -103,6 +112,42 @@ class Order
                 $orderLine->setOrderId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): self
+    {
+        $this->isPaid = $isPaid;
+
+        return $this;
+    }
+
+    public function getBillingAddress(): ?string
+    {
+        return $this->billingAddress;
+    }
+
+    public function setBillingAddress(string $billingAddress): self
+    {
+        $this->billingAddress = $billingAddress;
+
+        return $this;
+    }
+
+    public function getFreshLocker(): ?string
+    {
+        return $this->freshLocker;
+    }
+
+    public function setFreshLocker(string $freshLocker): self
+    {
+        $this->freshLocker = $freshLocker;
 
         return $this;
     }

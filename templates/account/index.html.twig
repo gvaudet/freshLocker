@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon compte - {{parent()}} {% endblock %}
+
+{% block body %}
+
+    <h1>Mon compte</h1>
+
+    <nav>
+        <ul class="nav nav-tabs d-flex">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Tableau de bord</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('address_list') }}">Mes adresses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#locker">Mon FreshLocker</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#orders">Mes commandes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#infos">Mes infos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('user_logout') }}">Déconnexion</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h2>Bonjour {{app.user.firstname }} {{ app.user.lastname }}</h2>
+
+    <p>Vous retrouvez ici toutes les informations utiles à votre compte.</p>
+
+    <h3>Mon FreshLocker</h3>
+
+    <h3>Mes adresses</h3>
+        {% for address in addresses %}
+            <tr>
+                <td>{{ address.number }}</td>
+                <td>{{ address.streetName }}</td>
+                <td>{{ address.postCode }}</td>
+                <td>{{ address.city }}</td>
+                <td>{{ address.country }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Vous n'avez pas encore enregistré d'adresse postale.</td>
+            </tr>
+        {% endfor %}
+
+    <h3>Mes commandes</h3>
+
+    <h3>Mes infos</h3>
+
+    <a class="btn btn-outline-secondary" href="{{ path('user_logout') }}">Déconnexion</a>
+
+
+{% endblock %}

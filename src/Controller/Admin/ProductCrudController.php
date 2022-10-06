@@ -28,7 +28,7 @@ class ProductCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField:: new('name', 'Nom du produit :'),
+            TextField:: new('label', 'Nom du produit :'),
             TextareaField:: new('description', 'Description :'),
             TextField::new('photo', 'chemin de l\'image du produit:'),
             MoneyField::new('unitPrice', 'Prix unitaire')->setCurrency('EUR'),

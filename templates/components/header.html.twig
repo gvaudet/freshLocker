@@ -1,25 +1,33 @@
 <header>
-    Header
     <nav>
-        <ul>
+        <ul class="nav d-flex">
             <li>
-            <a href="{{ path('main_index') }}">Accueil</a>
+                <a class="nav-link" href="{{ path('main_index') }}">Accueil</a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ path('product_list') }}">Nos produits</a>
             </li>
             {% if app.user %} {# Si connecté #}
             <li>
-                {{ app.user.firstname }}
+                <span class="nav-link"> {{ app.user.firstname }} </span>
             </li>
             <li>
-                <a href="{{ path('user_logout') }}">Déconnexion</a>
+                <a class="nav-link" href="{{ path('account_index') }}">Mon compte</a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ path('user_logout') }}">Déconnexion</a>
             </li>
             {% else %} {# Sinon #}
             <li>
-                <a href="{{ path('user_register') }}">Inscription</a>
+                <a class="nav-link" href="{{ path('user_register') }}">Inscription</a>
             </li>
             <li>
-                <a href="{{ path('user_login') }}">Connexion</a>
+                <a class="nav-link" href="{{ path('user_login') }}">Connexion</a>
             </li>
             {% endif %}
+            <li>
+                <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
+            </li>
         </ul>
     </nav>
 </header>

@@ -34,7 +34,10 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         # Penser à faire un redirect
         # - { path: ^/profile, roles: ROLE_USER }
-
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/commande, roles: ROLE_USER }
+        - { path: ^/account, roles: ROLE_USER }
+        
 when@test:
     security:
         password_hashers:

@@ -33,6 +33,10 @@ class FreshLocker
         $this->lockers = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getName().'[br]'.$this->getAddress();
+    }
     public function getId(): ?int
     {
         return $this->id;

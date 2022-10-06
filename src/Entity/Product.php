@@ -16,21 +16,6 @@ class Product
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $name = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $photo = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
-    private ?string $unitPrice = null;
-
-    #[ORM\Column(length: 50)]
-    private ?string $conversionFactor = null;
-
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'products')]
     private Collection $category;
 
@@ -43,6 +28,21 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Producer::class)]
     private Collection $producers;
 
+    #[ORM\Column(length: 50)]
+    private ?string $label = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $alias = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    private ?string $unitPrice = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $photo = null;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
@@ -54,66 +54,6 @@ class Product
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getUnitPrice(): ?string
-    {
-        return $this->unitPrice;
-    }
-
-    public function setUnitPrice(string $unitPrice): self
-    {
-        $this->unitPrice = $unitPrice;
-
-        return $this;
-    }
-
-    public function getConversionFactor(): ?string
-    {
-        return $this->conversionFactor;
-    }
-
-    public function setConversionFactor(string $conversionFactor): self
-    {
-        $this->conversionFactor = $conversionFactor;
-
-        return $this;
     }
 
     /**
@@ -214,6 +154,74 @@ class Product
                 $producer->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getUnitPrice(): ?string
+    {
+        return $this->unitPrice;
+    }
+
+    public function setUnitPrice(string $unitPrice): self
+    {
+        $this->unitPrice = $unitPrice;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of alias
+     */ 
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * Set the value of alias
+     *
+     * @return  self
+     */ 
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
 
         return $this;
     }
