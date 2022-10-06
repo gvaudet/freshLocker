@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Classes\Search;
 use App\Entity\Product;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Product>
@@ -37,6 +38,40 @@ class ProductRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * Requete qui permet de récupérer les produits en fonction de la recherche de l'utilisateur 
+     * @return Product 
+     */
+    public function findWithSearch(Search $search)
+    {
+        $query = $this
+        // On commence par créer une query et on déclare avec quelle table la query (mapping) est créée 'p' pour Product (Doctrine fait gagner du temps)
+                ->createQueryBuilder('p')
+                // Que dois-je selectionner pour la catégorie('c') et ('p') pour product
+                ->select('c', 'p')
+                // Faire la jointure entre les catégories de mon produit et la table Category
+                ->join('p.category', 'c');
+        // Lorsque des catégories ont été selectionner uniquement les catégories cochées ajouter un "where" dans la requete pour filtrer (encore un peu flou cette notion de where) 
+        if(!empty($search->categories)){
+            // Récuperer la query 
+            $query = $query
+                    // Spécifier que les ID des catégories soient dans la liste categories que j'envoie en parametre 
+                    ->andWhere('c.id IN (:categories)')
+                    // déclarer le param 'categories' avec sa valeur 
+                    ->setParameter('categories', $search->categories);
+        }
+        // Même chose que les catégories pour la barre de recherche avec le paramètre 'string' de la class Search()
+        if(!empty($search->string)){
+            $query = $query
+                    // Permet de voir si le nom du produit (p.label)
+                    ->andWhere('p.label LIKE :string')
+                    // "%{}%" permet de faire une recherche partielle 
+                    ->setParameter('string', "%{$search->string}%");
+        }
+
+        return $query->getQuery()->getResult(); 
     }
 
 //    /**
