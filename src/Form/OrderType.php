@@ -7,8 +7,10 @@ use App\Entity\FreshLocker;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class OrderType extends AbstractType
 {
@@ -18,21 +20,31 @@ class OrderType extends AbstractType
 
         $builder
             ->add('adresse', EntityType::class, [
-                'label' => 'Chosisissez votre adresses de livraison', 
+                'label' => 'Choisissez votre adresse de facturation', 
                 'required' => true,
                 'class' => Address::class, 
                 'choices' => $user->getAddress(),
                 // 'choice_label' => 'fullAddress',
                 'multiple' => false, 
-                'expanded' => true
+                'expanded' => true,
+                'constraints' => array(
+                    new NotBlank([
+                        'message' => 'Veuillez choisir une adresse de facturation'
+                    ])
+               )
             ])
 
             ->add('freshLocker', EntityType::class, [
-                'label' => 'Chosisissez votre FreshLocker', 
+                'label' => 'Choisissez votre FreshLocker', 
                 'required' => true,
                 'class' => FreshLocker::class, 
                 'multiple' => false, 
-                'expanded' => true
+                'expanded' => true,
+                'constraints' => array(
+                    new NotBlank([
+                        'message' => 'Veuillez choisir un FreshLocker'
+                    ])
+               )
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider ma commande', 
@@ -46,8 +58,11 @@ class OrderType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'user' => array()
-            // Configure your form options here
+            'user' => array(),
+            // Enlever la vérification navigateur pour la partie développement :
+            'attr' => [
+               'novalidate' => 'novalidate' 
+            ]            
         ]);
     }
 }

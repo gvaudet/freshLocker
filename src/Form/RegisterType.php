@@ -9,21 +9,23 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('lastname', null, [
+            ->add('lastname', TextType::class, [
                 'label' => 'Nom*',
                 'attr' => [
                     'placeholder' => 'Nom',
                     ],
                 ])
-            ->add('firstname', null, [
+            ->add('firstname', TextType::class, [
                 'label' => 'Prénom*',
                 'attr' => [
                     'placeholder' => 'Prénom',
@@ -53,10 +55,16 @@ class RegisterType extends AbstractType
                 'label' => 'En cochant cette case, j’accepte les CGV/CGU... blabla RGPD',
                 'mapped' => false,
                 'constraints' => [
-                     new IsTrue([
-                         'message' => 'Vous devez cocher la case '
-                     ])
-                 ]
+                    new IsTrue([
+                        'message' => 'Vous devez cocher la case '
+                    ])
+                ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'S\'inscrire', 
+                'attr' => [
+                    'class' => 'btn btn-success'
+                ]
             ])
         ;
     }
