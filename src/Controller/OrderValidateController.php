@@ -26,12 +26,20 @@ class OrderValidateController extends AbstractController
         $order = $orderRepository->find(
             $request->get('orderId')
         );
-        
-        $order->setIsPaid(true);
-        $this->entityManager->flush();
 
-        $session->remove('cart');
-        $session->remove('orderId');
+        // Sécurité si la commande n'existe pas ou qu'elle n'appartient pas au user connecté :
+        if (!$order || $order->getUser() != $this->getUser()) {
+            return $this->redirectToRoute('main_index');
+        }
+        
+        // isIsPaid ? Aucun sens, à changer
+        if ($order->isIsPaid() == 0) {
+            $order->setIsPaid(true);
+            $this->entityManager->flush();
+
+            $session->remove('cart');
+            $session->remove('orderId');
+        }
 
         // TODO : Envoi de l'email
 
