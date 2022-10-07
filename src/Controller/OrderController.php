@@ -122,8 +122,11 @@ class OrderController extends AbstractController
                 $entityManager->persist($orderLine); 
             }
             
-            //Poussée (flush) en BDD
+            // Poussée (flush) en BDD
             $entityManager->flush();
+
+            // Sauvegarder  en session l'Order ID
+            $session->set('orderId', $order->getId());
 
             // Par "sécurité" si la personne entre l'url mais n'a pas indiqué adresse et freshlocker, elle ne pourra pas afficher cette page 
         }

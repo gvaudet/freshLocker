@@ -18,8 +18,9 @@ class StripeController extends AbstractController
     #[Route('/commande/create-session', name: 'stripe_create_session')]
     public function index(SessionInterface $session, ProductRepository $productRepository): Response
     {   
-        // Init panier
-        $cart = $session->get('cart'); 
+        // Init panier (devrait être un appel d'un service Cart en axe d'amélioration)
+        $cart = $session->get('cart');
+        $orderId = $session->get('orderId');
 
         $cartWithDataProduct = [];
 
@@ -27,8 +28,7 @@ class StripeController extends AbstractController
             $cartWithDataProduct[] =[
                 'product' => $productRepository->find($id), 
                 'quantity' => $quantity
-            ];
-            
+            ];   
         }
 
         $total = 0; 
@@ -42,7 +42,8 @@ class StripeController extends AbstractController
         $products_for_stripe = [];
         $YOUR_DOMAIN = 'http://localhost:8080';
 
-        // Enregistrer mes produits Orderline()
+        // Enregistrer mes produits pour Stripe
+        // Axe d'amélioration : création d'une référence de commande en BDD pour faire appel à nos produits sans passer par le panier
         foreach ($cartWithDataProduct as $product) {
             $products_for_stripe[] = [
                 'price_data' => [
@@ -56,7 +57,7 @@ class StripeController extends AbstractController
             ];
         }
 
-        // Ajout des frais de livraison
+        // Ajout des frais de livraison au total
         $products_for_stripe[] = [  
             'price_data' => [
                 'currency' => 'eur',
@@ -68,21 +69,22 @@ class StripeController extends AbstractController
             'quantity' => 1,
         ];
 
+        // Init Stripe with secret key API Stripe
         Stripe::setApiKey('sk_test_51LpZOgHrQjlZLnq1Oei5S5tTlsNQW6IjMXYYQo6DBpXdLMZ4lkBgXLNG146UWFff8hia6tAMuOTn3HP88htmvDDY00agzchWL1');
 
+        // Création de la session Stripe
         $checkout_session = Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [
                 $products_for_stripe
             ],
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN . '/success.html',
-            'cancel_url' => $YOUR_DOMAIN . '/cancel.html',
+            'success_url' => $YOUR_DOMAIN . '/commande/merci?orderId=' . $orderId,
+            'cancel_url' => $YOUR_DOMAIN . '/commande/erreur?orderId=' . $orderId,
         ]);
 
+        // Envoyer une réponse Json pour script JS > btn Payer dans Récap de commande
         $response = new JsonResponse(['id' => $checkout_session->id]);
         return $response;
-
-        // return $this->redirect($checkout_session->url));
     }
 }

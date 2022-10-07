@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation de commande - {{ parent()}} {% endblock %}
+
+{% block body %}
+
+    <h1>Confirmation de commande</h1>
+
+    <p> Bonjour <strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong>,
+    <br>
+    <br>
+        Nous vous remercions pour votre commande n°<strong>{{ order.id }}</strong>.
+    <br>
+        Une confirmation vient de vous être envoyée par email à l'adresse <strong>{{ order.user.email }}</strong>.
+    <hr>
+    Votre commande sera livrée dans votre freshLocker à l'adresse suivante :
+    <br>
+    {{ order.freshLocker | replace({'[br]' : '</br>'}) | raw }}
+    <hr>
+        Pour suivre votre commande, rendez-vous dans votre compte.
+    </p>
+
+{% endblock %}
