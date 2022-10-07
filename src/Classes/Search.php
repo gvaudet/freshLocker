@@ -17,5 +17,7 @@ class Search
     #[ORM\Column]
     public array $categories =[];
 
+    public ?int $page = 1;
+
 }
 
