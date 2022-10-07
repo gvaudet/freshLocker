@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Order;
-use App\Entity\OrderLine;
 use App\Form\OrderType;
+use App\Entity\OrderLine;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +16,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/commande', 'order_')]
 class OrderController extends AbstractController
 {
+
+    const DELIVERY_PRICE = 1.99;
+
     #[Route('', name: 'index')]
     public function index(SessionInterface $session, ProductRepository $productRepository, Request $request): Response
     {
@@ -70,8 +73,7 @@ class OrderController extends AbstractController
             $cartWithDataProduct[] =[
                 'product' => $productRepository->find($id), 
                 'quantity' => $quantity
-            ];
-            
+            ];   
         }
     
         $total = 0; 
@@ -88,7 +90,6 @@ class OrderController extends AbstractController
         // "Écoute" de la requete
         $form->handleRequest($request);
         // Déclaration des frais de livraison
-        $deliveryPrice = 1.99; 
 
         if ($form->isSubmitted() && $form->isValid()){
             // Déclaration des variables 
@@ -110,7 +111,7 @@ class OrderController extends AbstractController
             $entityManager->persist($order); 
 
             // Enregistrer mes produits Orderline()
-            foreach($cartWithDataProduct as $product){
+            foreach ($cartWithDataProduct as $product) {
                 $orderLine = new OrderLine(); 
                 $orderLine->setOrder($order); 
                 $orderLine->setProduct($product['product']);
@@ -120,15 +121,17 @@ class OrderController extends AbstractController
                 $orderLine->setTotal($product['product']->getUnitPrice() * $product['quantity']);
                 $entityManager->persist($orderLine); 
             }
+            
+            //Poussée (flush) en BDD
             $entityManager->flush();
 
-            // Par "sécurité" si la personne entre l'url mais n'a pas indiqué adresse et freshlocker ne pourra pas afficher cette page 
-
+            // Par "sécurité" si la personne entre l'url mais n'a pas indiqué adresse et freshlocker, elle ne pourra pas afficher cette page 
         }
+
         return $this->render('order/add.html.twig', [
             'cart' => $cartWithDataProduct,
             'total' => $total,
-            'deliveryPrice' => $deliveryPrice,
+            'deliveryPrice' => self::DELIVERY_PRICE,
             'billingAddress' => $address_content, 
             'freshLocker' => $freshLocker,
         ]);    
