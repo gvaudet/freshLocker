@@ -64,8 +64,8 @@ class CartController extends AbstractController
     #[Route('/remove/{id}', name: 'remove')]
     public function remove($id, SessionInterface $session){
         $cart = $session->get('cart', []);
-
-        if($cart[$id]>1){
+            
+        if(isset($cart[$id]) && $cart[$id]>1){
             $cart[$id]--;
         }else{
             unset($cart[$id]);

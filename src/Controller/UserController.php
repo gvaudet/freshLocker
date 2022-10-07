@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Classes\Mail;
 use App\Form\RegisterType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('', name: 'user_')]
 class UserController extends AbstractController
@@ -29,6 +30,12 @@ class UserController extends AbstractController
 
             // Sauvegarde des données
             $userRepository->add($user, true);
+
+            $mail = new Mail(); 
+
+            $content = 'Bonjour'.' '.$user->getFirstname()."<br/>Bienvenue dans la grande famille FreshLocker"; 
+
+            $mail->send($user->getEmail(), $user->getFirstname(), 'Bienvenue dans la grande famille FreshLocker', $content);
 
             // Message flash et redirection
             $this->addFlash('success', 'Compte utilisateur créé !'); // Boucle à faire dans le twig pour affichage
