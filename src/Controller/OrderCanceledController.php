@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Mail;
 use App\Repository\OrderRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +24,14 @@ class OrderCanceledController extends AbstractController
         }
 
         // TODO : Envoi de l'email
+        $user = $order->getUser();
+
+        $mail = new Mail(); 
+
+        $content = 'Bonjour'.' '.$user->getFirstname()."<br/> Une mauvaise nouvelle !!"; 
+
+        $mail->send($user->getEmail(), $user->getFirstname(), 'Votre paiement à échouée mais nous ne sommes pas contre le fait de recommencer 👀', $content);
+
 
         return $this->render('order_canceled/index.html.twig', [
             'order' => $order
