@@ -1,0 +1,441 @@
+em {
+    font-style: italic;
+}
+.main-container1 {
+    width: 80%;
+    height: 600px;
+    background-image: url(../images/bg/a-brussel-sprout-on-green-surface.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+    margin: 30px auto;
+}
+
+.main-container1 h3 {
+    font-size: 36px;
+    font-weight: 700;
+    padding: 10px 5px;
+}
+
+.main-container1 p:first-child {
+    font-weight: 600;
+}
+
+.information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(255, 255, 255, 0.73);
+    max-width: 768px;
+    height: 520px;
+    padding: 20px;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.information button {
+    max-width: 180px;
+    font-weight: bold;
+    padding: 20px 10px;
+    margin: 10px;
+}
+
+.information li,
+.information p {
+    line-height: 25px;
+}
+.info-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: var(--main-orange);
+}
+
+.information input {
+    width: 90%;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.info-input a {
+    padding: 10px;
+    text-align: center;
+}
+.main-container2 {
+    overflow: auto;
+    white-space: nowrap;
+}
+.category-container {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+h2 {
+    font-size: 30px;
+    color: var(--main-green);
+    padding: 30px;
+    text-align: center;
+}
+
+.main-container2 h3 {
+    position: absolute;
+    bottom: 0;
+    color: var(--main-green);
+    background-color: var(--secondary-green);
+    text-align: center;
+    width: 100%;
+    padding: 35px 0;
+    border-radius: 0 0 10px 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.category-card {
+    position: relative;
+    min-width: 250px;
+    height: 385px;
+    background-color: #f1f1f1;
+    margin: 30px 20px 120px;
+    border-radius: 10px;
+    background-size: contain;
+}
+
+.fruit-card {
+    background-image: url(../images/category/categorie-fruits.jpg);    
+}
+
+.vegetable-card {
+    background-image: url(../images/category/categorie-legumes.jpg);
+}
+.fish-card {
+    background-image: url(../images/category/categorie-poissons-bis.jpg);
+}
+.meat-card {
+    background-image: url(../images/category/categorie-viande-bis.jpg);
+}
+
+
+.main-container3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--main-green);
+    color:var(--white);
+}
+
+.subcontainer3 {
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subcontainer3 li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.subcontainer3 img {
+    height: 250px;
+}
+.main-container3 h3 {
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.main-container3 h4 {
+    font-size: 24px;
+    display: inline-block;
+}
+
+.main-container3 i {
+    font-size: 1.5rem;
+}
+
+.main-container3 p {
+    font-size: 18px;
+    font-weight: 300;
+    max-width: 700px;
+}
+
+.title-container3 {
+    display: flex;
+    padding: 30px 0;
+}
+
+.title-container3 i {
+    padding: 0 15px;
+}
+
+.li2 li {
+    display: flex;
+    font-size: 18px;
+    font-weight: 300;
+    align-items: flex-start;
+    max-width: 220px;
+    padding: 8px 0;
+}
+
+.main-container3 .btn {
+    margin: 30px auto;
+    max-width: 215px;
+}
+
+.main-container4 {
+    overflow: auto;
+    white-space: nowrap;
+}
+.product-container {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.category-btn {
+    color: white;
+    background-color: var(--secondary-green);
+    height: 350px;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.category-btn i {
+    font-size: 6rem;
+}
+
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    height: 350px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 2px rgb(204, 204, 204);
+    margin: 0px 25px;
+}
+
+.icon1,
+.icon2,
+.icon3,
+.icon4 {
+    position: absolute;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    color: white;
+    padding: 10px;
+    top: 70%;
+}
+
+.icon1 {
+    right: 30px;
+    background-color: var(--main-orange);
+}
+
+.icon2 {
+    right: 130px;
+    background-color: var(--black);
+}
+
+.icon3 {
+    right: 30px;
+    background-color: var(--main-orange);
+}
+
+.icon4 {
+    right: 130px;
+    background-color: var(--mint-blue);
+}
+
+.img-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-height: 60%;
+}
+.img-container img {
+    object-fit: contain;
+    width: 75%;
+}
+.prices {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.description-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.producer,
+.prices {
+    font-size: 12px;
+}
+
+.prices :nth-child(3) {
+    font-size: 18px;
+}
+.prices :nth-child(2) {
+    padding-left: 50px;
+}
+
+.product-card p,
+.product-card span  {
+    padding: 5px;
+}
+
+.cta {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+}
+
+.main-container5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondary-orange);
+}
+
+.main-container5 h2{
+    text-align: center;
+}
+
+.comment-container {
+    margin: 10px;
+}
+.comments {
+    margin: 10px;
+    max-width: 85%;
+}
+.main-container5 .comments p {
+    font-weight: 400;
+    text-align: justify;
+}
+.main-container5 p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 15px;
+}
+
+.comment-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-title span {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--grey);
+}
+
+.notation {
+    padding: 10px 20px;
+}
+
+.notation i {
+    color: var(--white);
+    background-color: var(--secondary-green);
+    padding: 4px;
+}
+.main-container5 .comments .comment-title p{
+    font-weight: 600;
+}
+
+.username {
+    margin-left: 20px;
+    font-style: italic;
+}
+
+.trustpilot {
+    display: flex;
+    align-items: center;
+}
+
+.trustpilot p {
+    padding: 20px 10px;
+}
+
+.trustpilot i {
+    font-size: 2rem;
+    color: var(--secondary-green);
+}
+
+@media screen and (min-width: 600px) {
+    .category-container {
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-container1 {
+        width: 100%;
+        margin: 30px auto;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+
+
+    .subcontainer3 ul {
+        display: flex;
+    }
+
+    .li2 {
+        flex-direction: column;
+    }
+
+    .comments {
+        max-width: 400px;
+        align-self: flex-start;
+        margin: 20px;
+    }
+    .comment-container {
+        display: flex;
+    }
+}
+
+
+@media screen and (max-width:768px) {
+    .information {
+        width: 100%;
+    }
+    
+}
+
+@media screen and (min-width: 800px) {
+    .main-container1 {
+        position: relative;
+    }
+    .information {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+}
+@media screen and (max-width: 1600px) {
+    .main-container1 img {
+        max-height: 450px;
+    }
+
+}
+

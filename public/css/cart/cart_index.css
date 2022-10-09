@@ -1,0 +1,82 @@
+h1 {
+    font-size: 3rem;
+    margin: 30px;
+    margin-top: 100px;
+}
+
+.empty-cart {
+    font-size: 1.5rem;
+    color: var(--secondary-green);
+    margin: 10px;
+}
+
+main {
+    text-align: center;
+}
+
+.cart-table {
+    border-collapse: collapse;
+    min-width: 85%;
+    width: auto;
+    margin: 100px auto;
+    box-shadow: 0 5px 50px rgba(0,0,0,0.15);
+    border: 2px solid #f5f5f5;
+}
+
+thead tr {
+    background-color: var(--black);
+    color: #fff;
+}
+
+thead th {
+    padding: 20px 10px;
+}
+
+tbody tr, td, th {
+    border: 1px solid #ddd;
+}
+
+tbody tr td:nth-child(3),
+tbody tr td:nth-child(5),
+tfoot tr td:nth-child(3) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+}
+
+thead tr th:first-child,
+tbody tr td:first-child{
+    max-width: 135px;
+}
+.minus,
+.plus {
+    border: solid 1px gray;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--secondary-orange);
+}
+
+.btn {
+    padding: 15px;
+}
+
+.validate {
+    background-color: var(--secondary-orange);
+    margin: 40px auto;
+    transition: background-color 0.5s ease-out;
+}
+
+.validate:hover {
+    background-color: var(--main-orange);
+    color:var(--main-green);
+}
+
+@media screen and (min-width: 600px) {
+    th, td {
+        padding: 15px;
+    }
+}

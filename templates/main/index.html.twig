@@ -2,8 +2,544 @@
 
 {% block title %} Accueil - {{parent()}} {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+{% endblock %}
+
 {% block body %}
 
-    <h1>Homepage</h1>
-    
+    <div class="main-container1">
+        {# <img src="{{ asset('images/bg/green-cabbage-in-garden.jpg') }}" alt=""> #}
+        <div class="information">
+            <h3>Be Radis ?</h3>
+            <div>
+                <p>Je demande à Roger ce qu'il a fait pousser... Et plus qu'à le récupérer !</p>
+                <p>Les meilleurs produits issus de nos campagnes,<br>
+                    livrés dans votre casier de proximité.</p>
+            <a href="#" class="btn btn-primary mt-3">Qui est roger ?</a>
+            </div>
+            <div>
+                <p>Comment s'y prendre ?</p>
+                <ol>
+                    <li>1 - J'ajoute des produits à mon panier</li>
+                    <li>1 - Je choisis mon FreshLocker</li>
+                    <li>2 - Je passe commande avant 16h00</li>
+                    <li>3 - Je récupère ma commande</li>
+                </ol>
+                <a href="{{ path('product_list') }}" class="btn btn-primary mt-3">Voir tous nos produits</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container2">
+
+        <h2>Nos catégories</h2>
+
+        <div class="category-container">
+
+            <div class="category-card fruit-card">
+                <h3>Fruits</h3>
+            </div>
+
+            <div class="category-card vegetable-card">
+                <h3>Légumes</h3>
+            </div>
+
+            <div class="category-card fish-card">
+                <h3>Poissons</h3>
+            </div>
+
+            <div class="category-card meat-card">
+                <h3>Viandes</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="main-container3">
+        <div class="subcontainer3">
+            <h3>Nos engagements</h3>
+            <ul>
+                <li>
+                    <img src="{{ asset('images/logo/illu-fresh-min.png') }}" alt="" class="desktop">
+                    <div class="title-container3">
+                        <i class="fa-regular fa-snowflake"></i>
+                        <h4>Frais</h4>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium voluptatibus dolore
+                        blanditiis numquam dolor eligendi? Deserunt, molestiae delectus.</p>
+                    <ul class="li2">
+                        <li>-> Casier réfrigéré</li>
+                        <li>-> Produits de saison</li>
+                        <li>-> Produits bio et de qualité</li>
+                    </ul>
+                </li>
+                <li>
+                    <img src="{{ asset('images/logo/illu-local-max.png') }}" alt="" class="desktop">
+                    <div class="title-container3">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h4>Local</h4>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium voluptatibus dolore
+                        blanditiis numquam dolor eligendi? Deserunt, molestiae delectus.</p>
+                    <ul class="li2">
+                        <li>-> Participation à l'économie locale</li>
+                        <li>-> Juste rémunération des producteurs</li>
+                        <li>-> Partenariat durable</li>
+                    </ul>
+                </li>
+                <li>
+                    <img src="{{ asset('images/logo/illu-access.png') }}" alt="" class="desktop">
+                    <div class="title-container3">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <h4>Accessible</h4>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium voluptatibus dolore
+                        blanditiis numquam dolor eligendi? Deserunt, molestiae delectus.</p>
+                    <ul class="li2">
+                        <li>-> Proximité urbaine</li>
+                        <li>-> Réseau étendu de hubs</li>
+                        <li>-> 7-77ans</li>
+                    </ul>
+                </li>
+            </ul>
+            <button class="btn btn-primary">En savoir plus</button>
+        </div>
+    </div>
+
+    <div class="main-container4">
+
+        <h2>Nos produits</h2>
+
+        <section class="product-container">
+            <button class="btn category-btn">
+                <i class="fa-solid fa-carrot"></i>
+            </button>
+
+            {% for product in legume.products %}
+                <article class="product-card">
+                    <div class="img-container">
+                        <img src="{{ asset('images/' ~ legume.alias ~ '/mini/' ~ product.photo) }}"
+                             alt="Photo du produit {{ product.label }}">
+                        <a href="">
+                            <i class="fa-solid fa-basket-shopping icon1"></i>
+                        </a>
+                        <a href="">
+                            {# <i class="fa-solid fa-trash-can"></i> #}
+                        </a>
+                        <a href="">
+                            {# <i class="fa-solid fa-circle-plus"></i> #}
+                        </a>
+                        <a href="">
+                            {# <i class="fa-solid fa-circle-minus"></i> #}
+                        </a>
+                    </div>
+                    <div class="description-container">
+                        <div class="description">
+                            <div class="producer">
+                                <p>Producteur</p>
+                            </div>
+                            <div class="produit">
+                                <p>{{ product.label }}</p>
+                            </div>
+                        </div>
+                        <div class="prices">
+                            <span>00.00€/kg</span>
+                            <span>0kg</span>
+                            <span>Total</span>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+
+        </section>
+    </div>
+    <hr>
+
+    <div class="main-container4">
+
+        <section class="product-container">
+            <button class="btn category-btn">
+                <i class="fa-solid fa-apple-whole"></i>
+            </button>
+            {% for product in fruit.products %}
+                <article class="product-card">
+                    <div class="img-container">
+                        <img src="{{ asset('images/' ~ fruit.alias ~ '/mini/' ~ product.photo) }}"
+                             alt="Photo du produit {{ product.label }}">
+                        <a href="">
+                            <i class="fa-solid fa-basket-shopping icon1"></i>
+                        </a>
+                        <a href="">
+                            {# <i class="fa-solid fa-trash-can"></i> #}
+                        </a>
+                        <a href="">
+                            {# <i class="fa-solid fa-circle-plus"></i> #}
+                        </a>
+                        <a href="">
+                            {# <i class="fa-solid fa-circle-minus"></i> #}
+                        </a>
+                    </div>
+                    <div class="description-container">
+                        <div class="description">
+                            <div class="producer">
+                                <p>Producteur</p>
+                            </div>
+                            <div class="produit">
+                                <p>{{ product.label }}</p>
+                            </div>
+                        </div>
+                        <div class="prices">
+                            <span>00.00€/kg</span>
+                            <span>0kg</span>
+                            <span>Total</span>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    </div>
+    <hr>
+
+    <div class="main-container4">
+
+        <section class="product-container">
+            <button class="btn category-btn">
+                <i class="fa-solid fa-drumstick-bite"></i>
+            </button>
+            <article class="product-card">
+                <div class="img-container">
+                    <img src="{{ asset('images/products/raw-steak.jpg') }}" alt="">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping icon1"></i>
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-trash-can"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-plus"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-minus"></i> #}
+                    </a>
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        <div class="producer">
+                            <p>Producteur</p>
+                        </div>
+                        <div class="produit">
+                            <p>Nom produit/article</p>
+                        </div>
+                    </div>
+                    <div class="prices">
+                        <span>00.00€/kg</span>
+                        <span>0kg</span>
+                        <span>Total</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <div class="img-container">
+                    <img src="{{ asset('images/products/escalope-de-poulet.jpg') }}" alt="">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping icon1"></i>
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-trash-can"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-plus"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-minus"></i> #}
+                    </a>
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        <div class="producer">
+                            <p>Producteur</p>
+                        </div>
+                        <div class="produit">
+                            <p>Nom produit/article</p>
+                        </div>
+                    </div>
+                    <div class="prices">
+                        <span>00.00€/kg</span>
+                        <span>0kg</span>
+                        <span>Total</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <div class="img-container">
+                    <img src="{{ asset('images/products/raw-steak.jpg') }}" alt="">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping icon1"></i>
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-trash-can"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-plus"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-minus"></i> #}
+                    </a>
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        <div class="producer">
+                            <p>Producteur</p>
+                        </div>
+                        <div class="produit">
+                            <p>Nom produit/article</p>
+                        </div>
+                    </div>
+                    <div class="prices">
+                        <span>00.00€/kg</span>
+                        <span>0kg</span>
+                        <span>Total</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <div class="img-container">
+                    <img src="{{ asset('images/products/escalope-de-poulet.jpg') }}" alt="">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping icon1"></i>
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-trash-can"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-plus"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-minus"></i> #}
+                    </a>
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        <div class="producer">
+                            <p>Producteur</p>
+                        </div>
+                        <div class="produit">
+                            <p>Nom produit/article</p>
+                        </div>
+                    </div>
+                    <div class="prices">
+                        <span>00.00€/kg</span>
+                        <span>0kg</span>
+                        <span>Total</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </div>
+    <hr>
+
+    <div class="main-container4">
+
+        <section class="product-container">
+            <button class="btn category-btn">
+                <i class="fa-solid fa-fish-fins"></i>
+            </button>
+            <article class="product-card">
+                <div class="img-container">
+                    <img src="{{ asset('images/products/filet-pangasius.jpg') }}" alt="">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping icon1"></i>
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-trash-can"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-plus"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-minus"></i> #}
+                    </a>
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        <div class="producer">
+                            <p>Producteur</p>
+                        </div>
+                        <div class="produit">
+                            <p>Nom produit/article</p>
+                        </div>
+                    </div>
+                    <div class="prices">
+                        <span>00.00€/kg</span>
+                        <span>0kg</span>
+                        <span>Total</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <div class="img-container">
+                    <img src="{{ asset('images/products/saumon.jpg') }}" alt="">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping icon1"></i>
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-trash-can"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-plus"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-minus"></i> #}
+                    </a>
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        <div class="producer">
+                            <p>Producteur</p>
+                        </div>
+                        <div class="produit">
+                            <p>Nom produit/article</p>
+                        </div>
+                    </div>
+                    <div class="prices">
+                        <span>00.00€/kg</span>
+                        <span>0kg</span>
+                        <span>Total</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <div class="img-container">
+                    <img src="{{ asset('images/products/filet-pangasius.jpg') }}" alt="">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping icon1"></i>
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-trash-can"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-plus"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-minus"></i> #}
+                    </a>
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        <div class="producer">
+                            <p>Producteur</p>
+                        </div>
+                        <div class="produit">
+                            <p>Nom produit/article</p>
+                        </div>
+                    </div>
+                    <div class="prices">
+                        <span>00.00€/kg</span>
+                        <span>0kg</span>
+                        <span>Total</span>
+                    </div>
+                </div>
+            </article>
+            <article class="product-card">
+                <div class="img-container">
+                    <img src="{{ asset('images/products/saumon.jpg') }}" alt="">
+                    <a href="">
+                        <i class="fa-solid fa-basket-shopping icon1"></i>
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-trash-can"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-plus"></i> #}
+                    </a>
+                    <a href="">
+                        {# <i class="fa-solid fa-circle-minus"></i> #}
+                    </a>
+                </div>
+                <div class="description-container">
+                    <div class="description">
+                        <div class="producer">
+                            <p>Producteur</p>
+                        </div>
+                        <div class="produit">
+                            <p>Nom produit/article</p>
+                        </div>
+                    </div>
+                    <div class="prices">
+                        <span>00.00€/kg</span>
+                        <span>0kg</span>
+                        <span>Total</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </div>
+    </div>
+
+    <div class="cta">
+            <a href="{{ path('product_list') }}" class="btn btn-primary">
+                Voir tous nos produits
+            </a>
+    </div>
+
+    <div class="main-container5">
+        <h2>Votre avis compte pour nous !</h2>
+        <section class="comment-container">
+            <div class="comments">
+                <div class="notation">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <div class="comment-title">
+                    <p>Du beurre dans les épinards</p>
+                    <span>Il y a 3 jours</span>
+                </div>
+                <p>J'ai testé plusieurs fois FreshLocker et franchement leurs légumes sont à tomber (dans les pommes). Et
+                    j'ajouterai que les fruits ne comptent pas pour des prunes. Les prix sont tellement compétitifs
+                    qu'ils sont abordables même quand on n'a pas un radis. Un conseil, ramenez votre fraise !!!</p>
+                <span class="username">Eye Pop</span>
+            </div>
+
+            <div class="comments">
+                <div class="notation">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="comment-title">
+                    <p>Ça donne la pêche !</p>
+                    <span>Il y a 5 jours</span>
+                </div>
+                <p>Depuis que j'ai essayé FreshLocker, j'adore qu'on me raconte des salades, c'est dingue ! Je dirais
+                    presque que j'aime me faire carotter :o A consommer sans modération !!!</p>
+                <span class="username">Isidor Ange</span>
+            </div>
+
+            <div class="comments desktop">
+                <div class="notation">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <div class="comment-title">
+                    <p>Les yeux en amande</p>
+                    <span>Il y a 6 jours</span>
+                </div>
+                <p>Marre des vendeurs à la noix ? Vous en avez gros sur la patate ? Ne vous prenez plus le chou à chercher de la qualité. Avec FreshLocker, on a la banane ! Et pour cause, tous leurs produits sont certifiés bio et de qualité supérieure. Cerise sur le gâteau, vous trouverez forcément un locker près de chez vous !!!</p>
+                <span class="username">Cho. Arty</span>
+            </div>
+        </section>
+        <div class="trustpilot">
+            <i class="fa-solid fa-star"></i>
+            <p>Trustpilot</p>
+        </div>
+    </div>    
 {% endblock %}
