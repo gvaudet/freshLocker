@@ -30,7 +30,7 @@ class OrderCanceledController extends AbstractController
 
         $content = 'Bonjour'.' '.$user->getFirstname()."<br/> Une mauvaise nouvelle !!"; 
 
-        $mail->send($user->getEmail(), $user->getFirstname(), 'Votre paiement à échouée mais nous ne sommes pas contre le fait de recommencer 👀', $content);
+        $mail->send($user->getEmail(), $user->getFirstname(), 'Votre paiement à échoué mais nous ne sommes pas contre le fait de recommencer 👀', $content);
 
 
         return $this->render('order_canceled/index.html.twig', [
