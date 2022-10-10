@@ -31,7 +31,7 @@ class UserCrudController extends AbstractCrudController
             ArrayField::new('roles', 'role'),
             TextField::new('plainPassword', 'mot de passe'),
             TextField::new('phoneNumber', 'Numéro de téléphone'),
-            // CollectionField::new('Address')->setEntryType(AddressType::class),
+            CollectionField::new('address')->setEntryType(AddressType::class),
         ];
     }
     

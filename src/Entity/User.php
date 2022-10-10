@@ -83,6 +83,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->address;
     }
 
+    public function setAddress(Collection $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
     public function addAddress(Address $address): self
     {
         if (!$this->address->contains($address)) {
