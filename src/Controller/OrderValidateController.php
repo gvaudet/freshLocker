@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Mail;
 use App\Entity\Order;
 use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,6 +43,13 @@ class OrderValidateController extends AbstractController
         }
 
         // TODO : Envoi de l'email
+        $user = $order->getUser();
+
+        $mail = new Mail(); 
+
+        $content = 'Bonjour'.' '.$user->getFirstname()."<br/>Bienvenue dans la grande famille FreshLocker"; 
+
+        $mail->send($user->getEmail(), $user->getFirstname(), 'Félcitation votre commande a été validée !', $content);
 
         return $this->render('order_validate/index.html.twig', [
             'order' => $order
