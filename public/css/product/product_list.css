@@ -15,16 +15,22 @@ main {
 }
 
 h1 {
-    margin: 30px 0px 30px 100px;
     align-self: flex-start;
     font-weight: bold;
     letter-spacing: 1px;
+    font-size: 30px;
+    color: var(--main-green);
+    padding: 30px;
 }
 
 .filter-container {
     max-width: 80%;
 }
 
+.filter-container button {
+    margin: 10px;
+}
+    
 form {
     display: flex;
     justify-content: center;
@@ -217,6 +223,10 @@ section {
 
 /* Médiqa queries tablette/desktop */
 @media screen and (min-width: 600px) {
+    h1 {
+    margin: 30px 0px 30px 100px;
+    }
+    
     .icon1,
     .icon2,
     .icon3,

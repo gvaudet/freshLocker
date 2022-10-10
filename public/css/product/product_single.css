@@ -7,7 +7,7 @@
 h1 {
     text-align: center;
     font-size: max(30px, 2.5vw);
-    margin: 30px auto;
+    margin: 40px auto;
 }
 
 .single-card {
@@ -61,7 +61,7 @@ h1 {
 
 .producer-link {
     width: 90%;
-    margin: 20px auto;
+    margin: 75px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,15 +72,20 @@ h1 {
     max-width: 1200px;
     border-radius: 10px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    margin: 50px auto;
 }
 .producer-btn {
     border: solid 2px var(--main-orange);
     text-align: center;
-    max-width: 200px;
     margin: 30px;
     padding: 10px 15px;
     border-radius: 10px;
     font-weight: 800;
+}
+
+.producer-btn:hover {
+    background-color: var(--main-orange);
+    color: var(--main-green);
 }
 
 @media screen and (min-width: 400px) {
@@ -89,8 +94,9 @@ h1 {
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 880px) {
     .single-card {
         flex-direction: row;
+        margin: 20px calc(5vw + 5px);
     }
 }

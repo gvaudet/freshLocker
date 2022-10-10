@@ -23,23 +23,33 @@ h3 {
     background-color: #f5f5f5;
 }
 
-main p{
-    padding: 15px 25px;
-    font-size: 1.1rem;
-}
-
 .container ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-td {
-    padding: 10px;
-}
+
 .container ul li {
     padding: 10px;
     min-width: 120px;
+    transition: all 0.2s ease-in;
+}
+
+.container ul li:hover {
+    background-color: var(--mint-blue)  ;
+}
+
+main p{
+    padding: 15px 25px;
+    font-size: 1.1rem;
+}
+
+.table {
+    margin: 20px;
+}
+td {
+    padding: 10px;
 }
 
 .btn-container {
@@ -58,13 +68,35 @@ td {
 }
 
 
-
-@media screen and (min-width: 590px) {
+@media screen and (min-width: 630px) {
     .container ul {
         justify-content: space-evenly;
     }
     .container2 {
         margin-left: 4vw;
     }
+    .container ul li {
+        font-size: 1.4rem;
+    }
 }
 
+@media screen and (max-width: 630px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tr {
+        display: block;
+        margin-bottom: 40px;
+    }
+    .table td {
+        display: block;
+        text-align: right;
+        }
+        
+        .table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        }
+}

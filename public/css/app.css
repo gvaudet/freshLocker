@@ -23,6 +23,10 @@
 
 /* Buttons */ 
 
+button {
+    font-family: 'Poppins', sans-serif;
+}
+
 .btn /* structure */ {
     display: inline-block;
     padding: 12px 28px;
@@ -82,6 +86,7 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    box-shadow: 0 2px 5px -2px #e6e2e2;
 }
 
 header img {
@@ -457,7 +462,8 @@ footer li {
 }
 
 .copyright {
-    background-color: var(--main-green);
+    background-color: var(--secondary-green);
+    color: var(--black);
     text-align: center;
     padding: 10px 0px;
 }

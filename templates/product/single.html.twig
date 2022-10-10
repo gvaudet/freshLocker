@@ -3,16 +3,38 @@
 {% block title %} Produit {{ product.label }} - {{parent()}} {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{asset('css/product.css')}}">        
+    <link rel="stylesheet" href="{{asset('css/product/product_single.css')}}">        
 {% endblock %}
 
 
 {% block body %}
 
-    <h1>{{ product.label }}</h1>
 
+     <h1>{{ product.label }}</h1>
+    <div class="single-card">
     {% for productCategory in product.category %}
         <img src="{{ asset('images/' ~ productCategory.alias ~ '/full/' ~ product.photo) }}" alt="Photo du produit {{ product.label }}">
-    {% endfor %}
+    {% endfor %} 
+        <div class="description">
+            <p>{{ product.producers.get(0) }}</p>
+            <p>{{ product.label }}</p>
+            
+            {% for productConditioning in product.conditioning %}
+                <p>{{ productConditioning.label }}</p>
+                <p>{{ product.unitPrice / productConditioning.conversionFactor }} / kg</p>
+            {% endfor %}
+            <p>{{ product.unitPrice}} €</p>
+        </div>
+        <button class="btn btn-primary">
+            <div class="add-button">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <span>Ajouter au panier</span>
+            </div>
+        </button>
+    </div>
 
+    <div class="producer-link">
+        <img src="{{ asset ('images/bg/producer-sample.jpg')}}" alt="">
+        <button class="btn btn-secondary">Voir tous ses produits</button>
+    </div>
 {% endblock %}

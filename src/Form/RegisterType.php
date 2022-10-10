@@ -52,7 +52,8 @@ class RegisterType extends AbstractType
                     ],
                 ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'En cochant cette case, je reconnais avoir pris connaissance des Conditions Générales d\'Utilisation du site ainsi que sa Politique de Confidentialité et je les accepte.',
+                'label' => 'En cochant cette case, je reconnais avoir pris connaissance des <a href="{{ path(\'legal_CGU\'}}">Conditions Générales d\'Utilisation</a> du site ainsi que sa <a>Politique de Confidentialité</a> et je les accepte.',
+                'label_html' => true,
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([

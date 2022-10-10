@@ -2,6 +2,9 @@
 
 {% block title %}Valider ma commande - {{ parent()}} {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/order/order_add.css')}}">        
+{% endblock %}
 {# Script JS pour Stripe #}
 {% block javascript %}
     <script src="https://js.stripe.com/v3/"></script>
@@ -37,9 +40,8 @@
 {% block body %}
 
     <h1>Mon récapitulatif de commmande</h1>
+    <div class="check-info">
     <p>Vérifiez vos informations avant de valider votre commande :</p>
-    <div class="row">
-        <div class="col-md-6">
         <p>Mon adresse de facturation </p>
         {{ billingAddress}}
         <p>Mon freshLocker </p>
@@ -48,11 +50,11 @@
         <p> {{ freshLocker.address.streetName}}</p>
         <p> {{ freshLocker.address.city}}</p>
         <p> {{ freshLocker.address.postCode}}</p>
-        </div>
-        <div class="col-md-6">
-            <p>Ma commande</p>
+    </div>
 
-        <table class="table">
+            <h2>Ma commande</h2>
+
+        <table class="order-table">
             <thead>
                 <tr>
                     <th>Produit</th>
@@ -81,8 +83,7 @@
                 </tr>
             </tfoot>
         </table>
-            <a class="btn btn-success" id="checkout-button">Payer {{ total + deliveryPrice}}€</a>
+        <div class="btn-container">
+            <a class="btn btn-success btn-secondary" id="checkout-button">Payer {{ total + deliveryPrice}}€</a>
         </div>
-    </div>
 {% endblock %}
-

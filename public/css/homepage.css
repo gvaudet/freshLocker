@@ -12,6 +12,9 @@ em {
     margin: 30px auto;
 }
 
+.main-container1 a {
+    margin: 30px auto 20px;
+}
 .main-container1 h3 {
     font-size: 36px;
     font-weight: 700;
@@ -77,10 +80,12 @@ em {
 }
 
 h2 {
-    font-size: 30px;
-    color: var(--main-green);
-    padding: 30px;
-    text-align: center;
+        align-self: flex-start;
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 30px;
+        color: var(--main-green);
+        padding: 30px;
 }
 
 .main-container2 h3 {
@@ -130,7 +135,7 @@ h2 {
 }
 
 .subcontainer3 {
-    max-width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,7 +146,10 @@ h2 {
     flex-direction: column;
     align-items: center;
     margin: 10px;
-    padding: 60px;
+}
+
+.subcontainer3 ul {
+    list-style: inside;
 }
 
 .subcontainer3 img {
@@ -179,13 +187,18 @@ h2 {
     padding: 0 15px;
 }
 
+.li2 {
+    list-style: disc;
+}
+
 .li2 li {
     display: flex;
     font-size: 18px;
     font-weight: 300;
     align-items: flex-start;
     max-width: 220px;
-    padding: 8px 0;
+    padding: 10px 0;
+    line-height: 20px;
 }
 
 .main-container3 .btn {
@@ -384,8 +397,11 @@ h2 {
         flex-wrap: wrap;
         width: 100%;
     }
-}
 
+    h2 {
+    margin: 30px 0px 30px 100px;
+    }
+}
 @media screen and (max-width: 600px) {
     .main-container1 {
         width: 100%;
@@ -395,11 +411,6 @@ h2 {
 }
 
 @media screen and (min-width: 768px) {
-
-
-    .subcontainer3 ul {
-        display: flex;
-    }
 
     .li2 {
         flex-direction: column;
@@ -432,7 +443,20 @@ h2 {
         top: 20px;
         left: 20px;
     }
+    
+    .subcontainer3 ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
 }
+
+@media screen and (max-width: 800px) {
+    .subcontainer3 img {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 1600px) {
     .main-container1 img {
         max-height: 450px;
