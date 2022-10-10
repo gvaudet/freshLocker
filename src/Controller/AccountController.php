@@ -14,10 +14,12 @@ class AccountController extends AbstractController
     #[Route('', name: 'index')]
     public function index(): Response
     {
+        $orders = $this->getUser()->getOrders(); 
         $addresses = $this->getUser()->getAddress();
         
         return $this->render('account/index.html.twig', [
-            'addresses' => $addresses
+            'addresses' => $addresses,
+            'orders' => $orders
         ]);
     }
 }
