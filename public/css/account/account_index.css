@@ -24,7 +24,7 @@ h3 {
 }
 
 main p{
-    padding: 15px 25px;
+    padding: 15px 30px;
     font-size: 1.1rem;
 }
 
@@ -40,8 +40,12 @@ td {
 .container ul li {
     padding: 10px;
     min-width: 120px;
+    transition: all 0.2s ease-in;
 }
 
+.container ul li:hover {
+    background-color: #d9d9d9;
+}
 .btn-container {
     width: 100%;
     text-align: center;
@@ -57,7 +61,7 @@ td {
 }
 
 .address {
-    padding: 15px;
+    padding: 15px 30px;
 }
 
 @media screen and (min-width: 590px) {

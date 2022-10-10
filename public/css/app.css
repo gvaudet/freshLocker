@@ -46,6 +46,17 @@
     background-color: #F5B131;
 }
 
+.btn-secondary {
+    color: var(--black);
+    background-color: var(--secondary-orange);
+    transition: all 0.3s ease-in;
+}
+
+.btn-secondary:hover {
+    background-color: var(--main-orange);
+    color: var(--main-green);
+}
+
 .pointer {
     cursor: pointer;
 }

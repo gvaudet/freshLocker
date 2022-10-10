@@ -2,11 +2,15 @@
 
 {% block title %} Mes adresses - {{parent()}} {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/address/address_list.css')}}">
+{% endblock  %}
+
 {% block body %}
 
     <h1>Mon compte</h1>
-
-    <nav>
+  
+    <div class="container">
         <ul class="nav nav-tabs d-flex">
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('account_index') }}">Tableau de bord</a>
@@ -27,20 +31,19 @@
                 <a class="nav-link" href="{{ path('user_logout') }}">Déconnexion</a>
             </li>
         </ul>
-    </nav>
-
+    
+    <div class="container2">
     <h2>Mes adresses</h2>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Number</th>
-                <th>StreetName</th>
-                <th>PostCode</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>actions</th>
+                <th>Numéro</th>
+                <th>Libellé</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -68,6 +71,9 @@
 
         </tbody>
     </table>
+    </div>
 
-    <a class="btn btn-success" href="{{ path('address_add') }}">Create new</a>
+<div class="btn-container">
+    <a class="btn btn-primary" href="{{ path('address_add') }}">Create new</a>
+</div>
 {% endblock %}

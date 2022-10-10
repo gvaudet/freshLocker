@@ -40,7 +40,7 @@ class RegisterType extends AbstractType
                 ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'Mot de passe*',
-                'help' => 'Le mot de passe doit contenir au moins 8 caractères',
+                'help' => 'Le mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 caractère spécial, 1 chiffre',
                 'attr' => [
                     'placeholder' => '********',
                 ],
@@ -52,7 +52,7 @@ class RegisterType extends AbstractType
                     ],
                 ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'En cochant cette case, j’accepte les CGV/CGU... blabla RGPD',
+                'label' => 'En cochant cette case, je reconnais avoir pris connaissance des Conditions Générales d\'Utilisation du site ainsi que sa Politique de Confidentialité et je les accepte.',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([

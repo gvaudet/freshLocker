@@ -42,16 +42,15 @@ form button {
     margin: 40px auto;
     align-self: center;
     padding: 14px 12px;
-    background-color: var(--main-orange);
+    background-color: var(--secondary-orange);
     border-radius: 15px;
-    border: solid 2px transparent;
     cursor: pointer;
     transition: background-color 0.4s ease-in;
     font-weight: 600;
+    font-size: 1.1rem;
 }
 
 form button:hover {
-    border: solid 2px var(--main-orange);
-    background-color: white;
+    background-color: var(--main-orange);
     color: var(--main-green);
 }

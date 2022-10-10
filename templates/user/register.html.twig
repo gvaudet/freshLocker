@@ -2,6 +2,10 @@
 
 {% block title %} Inscription - {{ parent() }} {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/user/register.css')}}">        
+{% endblock %}
+
 {% block body %}
 
     <h1>Inscription</h1>
@@ -13,9 +17,10 @@
         {{ form_row(form.email )}}
         {{ form_row(form.plainPassword )}}
         {{ form_row(form.phoneNumber )}}
+        <div class="cgu">
 
         {{ form_row(form.agreeTerms )}}
-        
         {{ form_end(form) }}
+        </div>
 
 {% endblock %}

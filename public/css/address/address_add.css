@@ -53,14 +53,17 @@ td {
     transition: all 0.5s ease;
 }
 
+.btn-success:hover {
+    background-color: var(--main-orange);
+    color:var(--main-green);
+}
 
 .btn-container a {
     margin: 40px auto;
 }
 
 form {
-    margin: 5px;
-    padding: 30px;
+    margin: 5px auto;
 }
 label {
     padding: 15px;
@@ -68,16 +71,30 @@ label {
 input {
     outline: none;
     margin: 5px;
+    padding: 10px;
+}
+
+#address {
+    margin: 10px;
 }
 
 #address div {
     display: flex;
+    justify-content: space-between;
 }
+
 
 @media screen and (min-width: 590px) {
     .container ul {
         justify-content: space-evenly;
     }
-
+    #address  {
+        max-width: 500px;
+        width: 80%;
+        margin: 30px 10vw;
+    }
+    .form {
+        display: flex;
+    }
 }
 

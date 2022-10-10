@@ -2,6 +2,8 @@
 
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/cart/cart_index.css')}}">
+
 {% endblock  %}
 
 {% block title %}Panier - {{ parent()}} {% endblock %}
@@ -12,11 +14,11 @@
 </div>
 
 {% if items| length > 0 %}
-    <table class="table">
+    <table class="cart-table">
         <thead>
             <tr>
                 <th>Produit</th>
-                <th>Price</th>
+                <th>Prix</th>
                 <th>Quantité</th>
                 <th>Total</th>
                 <th></th>
@@ -26,13 +28,13 @@
             {% for item in items %}
                 <tr>
                     <td>{{ item.product.label}}</td>
-                    <td>{{ item.product.unitPrice}}</td>
+                    <td>{{ item.product.unitPrice}} €</td>
                     <td>
-                        <a href="{{ path('cart_remove', {'id' : item.product.id})}}"><i class="fa-solid fa-minus"></i></a>
+                        <a href="{{ path('cart_remove', {'id' : item.product.id})}}"><i class="fa-solid fa-minus minus"></i></a>
                             {{ item.quantity}}
-                        <a href="{{ path('cart_add', {'id' : item.product.id})}}"><i class="fa-solid fa-plus"></i></a>
+                        <a href="{{ path('cart_add', {'id' : item.product.id})}}"><i class="fa-solid fa-plus plus"></i></a>
                     </td>
-                    <td> {{ item.product.unitPrice * item.quantity}}</td>
+                    <td> {{ item.product.unitPrice * item.quantity}} €</td>
                     <td>
                         <a href="{{ path('cart_removeItem', {'id': item.product.id})}}" class=" btn btn-danger btn-sm">
                             <i class="fas fa-trash"></i>
@@ -44,17 +46,20 @@
         <tfoot>
             <tr>
                 <td colspan="3">Total :</td>
-                <td>{{ total }}</td>
+                <td>{{ total }} €</td>
                 <td>              
                     <a href="{{ path('cart_removeAll')}}" class=" btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
+                        <i class="fas fa-trash trash"></i>
                     </a>
                 </td>
             </tr>
         </tfoot>
     </table>
-        <a href="{{ path('order_index')}}" class="btn btn-success">Valider votre panier </a>
+        <a href="{{ path('order_index')}}" class="btn btn-success validate">Valider votre panier </a>
 {% else %}
-    <p>Votre panier est vide</p>
+    <p class="empty-cart">Votre panier est vide</p>
 {% endif %}
 {% endblock %}
+
+
+

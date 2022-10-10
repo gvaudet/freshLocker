@@ -198,7 +198,7 @@ section {
 @media screen and (min-width: 1200px) {
     .products-container {
         display: grid;
-        grid-template: repeat(5, 1fr) /repeat(4, 1fr);
+        grid-template: repeat(3, 1fr) /repeat(4, 1fr);
         grid-row-gap: 15px;
         grid-column-gap: 20px;
     }
@@ -209,7 +209,7 @@ section {
 @media screen and (min-width: 888px) and (max-width: 1200px){
     .products-container {
         display: grid;
-        grid-template: repeat(5, 1fr) /repeat(3, 1fr);
+        grid-template: repeat(3, 1fr) /repeat(3, 1fr);
         grid-row-gap: 15px;
         grid-column-gap: 20px;
     }
@@ -245,7 +245,7 @@ section {
 
 @media screen and (min-width: 595px) and (max-width:888px){
     .products-container {
-        grid-template: repeat(6, 1fr) /repeat(2, 1fr);
+        grid-template: repeat(4, 1fr) /repeat(2, 1fr);
     }
         
    

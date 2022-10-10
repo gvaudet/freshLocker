@@ -2,11 +2,12 @@
 
 {% block title %}Valider ma commande - {{ parent()}} {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/order/order_index.css')}}">        
+{% endblock %}
+
 {% block body %}
 <h2>Je passe ma commande</h2>
-
-<div class="row">
-    <div class="col-md-6">
 
         {% set formHtml %}
 
@@ -19,17 +20,16 @@
 
         {{ formHtml|replace({'[br]' : '<br/>'})|raw }}
     </div>
-    <div class="col-md-6">
-        <p>Récap de ma commande</p>
 
-    <table class="table">
+        <p class="recap">Récapitulatif de ma commande</p>
+
+    <table class="order-table">
         <thead>
             <tr>
                 <th>Produit</th>
-                <th>Price</th>
+                <th>Prix</th>
                 <th>Quantité</th>
                 <th>Total</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -47,10 +47,8 @@
             <tr>
                 <td colspan="3">Total :</td>
                 <td>{{ total }}</td>
-                </td>
             </tr>
         </tfoot>
     </table>
-    </div>
 </div>
 {% endblock %}
