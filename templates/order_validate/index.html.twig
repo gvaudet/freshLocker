@@ -2,6 +2,10 @@
 
 {% block title %}Confirmation de commande - {{ parent()}} {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/order/order_validate.css')}}">        
+{% endblock %}
+
 {% block body %}
 
     <h1>Confirmation de commande</h1>
@@ -11,13 +15,19 @@
     <br>
         Nous vous remercions pour votre commande n°<strong>{{ order.id }}</strong>.
     <br>
-        Une confirmation vient de vous être envoyée par email à l'adresse <strong>{{ order.user.email }}</strong>.
+        Une confirmation vient de vous être envoyée par email à l'adresse : <strong class="email">{{ order.user.email }}</strong>.
+    </p>
     <hr>
+    <p>
     Votre commande sera livrée dans votre freshLocker à l'adresse suivante :
+    </p>
     <br>
+    <p>
     {{ order.freshLocker | replace({'[br]' : '</br>'}) | raw }}
+    </p>
     <hr>
-        Pour suivre votre commande, rendez-vous dans votre compte.
+    <p>
+        Pour suivre votre commande, rendez-vous dans votre espace utilisateur.
     </p>
 
 {% endblock %}

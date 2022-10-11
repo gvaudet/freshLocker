@@ -11,7 +11,7 @@
     <div class="main-container1">
         {# <img src="{{ asset('images/bg/green-cabbage-in-garden.jpg') }}" alt=""> #}
         <div class="information">
-            <h3>Be Radis ?</h3>
+            <h3 id="top">Be Radis ?</h3>
             <div>
                 <p>Je demande à Roger ce qu'il a fait pousser... Et plus qu'à le récupérer !</p>
                 <p>Les meilleurs produits issus de nos campagnes,<br>
@@ -22,9 +22,9 @@
                 <p>Comment s'y prendre ?</p>
                 <ol>
                     <li>1 - J'ajoute des produits à mon panier</li>
-                    <li>1 - Je choisis mon FreshLocker</li>
-                    <li>2 - Je passe commande avant 16h00</li>
-                    <li>3 - Je récupère ma commande</li>
+                    <li>2 - Je choisis mon FreshLocker</li>
+                    <li>3 - Je passe commande avant 16h00</li>
+                    <li>4 - Je récupère ma commande</li>
                 </ol>
                 <a href="{{ path('product_list') }}" class="btn btn-primary mt-3">Voir tous nos produits</a>
             </div>
@@ -474,6 +474,9 @@
     <div class="cta">
             <a href="{{ path('product_list') }}" class="btn btn-primary">
                 Voir tous nos produits
+            </a>
+            <a href="#top">
+                <i class="fa-solid fa-arrow-up anchor"></i>
             </a>
     </div>
 
